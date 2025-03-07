@@ -26,3 +26,79 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi tình yêu 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Trò chơi: Đi đến tình yêu! 💖</h1>
+        <p>Trả lời những câu hỏi này để khám phá tương lai của chúng ta nhé!</p>
+
+        <div id="question-container">
+            <p id="question">Câu hỏi 1: Em thích chúng mình cùng nhau đi du lịch ở đâu nhất?</p>
+            <button onclick="chooseAnswer('Nhật Bản')">Nhật Bản 🇯🇵</button>
+            <button onclick="chooseAnswer('Pháp')">Pháp 🇫🇷</button>
+            <button onclick="chooseAnswer('Maldives')">Maldives 🏝️</button>
+        </div>
+
+        <div id="result-container" style="display:none;">
+            <p id="result"></p>
+            <button onclick="restartGame()">Chơi lại 💕</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Câu hỏi 1: Em thích chúng mình cùng nhau đi du lịch ở đâu nhất?",
+                answers: ["Nhật Bản 🇯🇵", "Pháp 🇫🇷", "Maldives 🏝️"]
+            },
+            {
+                question: "Câu hỏi 2: Em muốn chúng mình nuôi thú cưng gì?",
+                answers: ["Chó 🐶", "Mèo 🐱", "Thỏ 🐰"]
+            },
+            {
+                question: "Câu hỏi 3: Em thích chúng mình cùng nhau làm gì vào ngày cuối tuần?",
+                answers: ["Đi xem phim 🎥", "Nấu ăn cùng nhau 🍽️", "Đi dạo và uống cà phê ☕️"]
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function chooseAnswer(answer) {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                document.getElementById('question').innerText = questions[currentQuestion].question;
+                const buttons = document.querySelectorAll('#question-container button');
+                buttons.forEach((btn, index) => {
+                    btn.innerText = questions[currentQuestion].answers[index];
+                });
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('question-container').style.display = 'none';
+            document.getElementById('result-container').style.display = 'block';
+            document.getElementById('result').innerText = 'Chúng mình đúng là sinh ra để dành cho nhau! 💕';
+        }
+
+        function restartGame() {
+            currentQuestion = 0;
+            document.getElementById('question-container').style.display = 'block';
+            document.getElementById('result-container').style.display = 'none';
+            document.getElementById('question').innerText = questions[0].question;
+            const buttons = document.querySelectorAll('#question-container button');
+            buttons.forEach((btn, index) => {
+                btn.innerText = questions[0].answers[index];
+            });
+        }
+    </script>
+</body>
+</html>
